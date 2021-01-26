@@ -90,20 +90,20 @@ function baseballGame(inningCB){
 
 function finalScore(inningCB, inningsPlayed){
 
-  const totalGame = [];
-  let homeScore = 0;
-  let awayScore = 0;
+  const runsScored = [];
+    let homeScore = 0;
+    let awayScore = 0;
   
-  for(let i = 0; i < 9; i++){
-    const currentScore = baseballGame(inningCB);
-    homeScore = homeScore + currentScore.Home
-    awayScore = awayScore + currentScore.Away
-    totalGame.push(`Period ${i + 1}: Away: ${currentScore.Away} - Home: ${currentScore.Home}`);
+  for(let i = 0; i < inningsPlayed; i++){
+    let currentScore = baseballGame(inningCB);
+    homeScore = homeScore + currentScore.Home;
+    awayScore = awayScore + currentScore.Away;
+    runsScored.push(`Inning ${i + 1}: Away: ${awayScore} - Home: ${homeScore}`);
   }
- return totalGame;
+  return runsScored;
 }
 
-console.log(finalScore(inning,9));
+console.log(finalScore(inning,3));
 
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
