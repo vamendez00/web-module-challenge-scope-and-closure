@@ -81,30 +81,33 @@ Use the finalScore function below to do the following:
   "Away": 5
 }
 */ 
-function baseballGame(inningCB){
+function finalScore(inningCB, inningsPlayed){
+
+  function baseballGame(inningCB){
   return {
     Home: inningCB(),
     Away: inningCB()
 }
 }
-
-function finalScore(inningCB, inningsPlayed){
-
-  const runsScored = [];
-    let homeScore = 0;
-    let awayScore = 0;
+  const finalTally = [];
+  let currentScore = baseballGame(inningCB); 
   
   for(let i = 0; i < inningsPlayed; i++){
-    let currentScore = baseballGame(inningCB);
+    let homeScore = 0;
+    let awayScore = 0;
+   
+    
     homeScore = homeScore + currentScore.Home;
     awayScore = awayScore + currentScore.Away;
-    runsScored.push(`Inning ${i + 1}: Away: ${awayScore} - Home: ${homeScore}`);
+    
+    finalTally.push(`INNINGS PLAYED: ${i=inningsPlayed}, FINAL SCORE - Away: ${awayScore} - Home: ${homeScore}`);
+
   }
-  return runsScored;
+  return finalTally;
 }
 
-console.log(finalScore(inning,3));
 
+console.log(finalScore(inning,3));
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
 Use the getInningScore() function below to do the following:
@@ -125,7 +128,7 @@ Use the scoreboard function below to do the following:
   2. Receive the callback function `inning` from Task 2
   3. Receive a number of innings to be played
   4. Return an array where each of it's index values equals a string stating the
-  Home and Away team's scores for each inning.  Not the cummulative score.
+  Home and Away team's scores for each inning.  Not the cumulative score.
   5. If there's a tie at the end of the innings, add this message containing the score to the end of the array:  "This game will require extra innings: Away 12 - Home 12"  (see tie example below)
      If there isn't a tie, add this message to the end of the array: "Final Score: Away 13 - Home 11"  (see no tie example below)
   
