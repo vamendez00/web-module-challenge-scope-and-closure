@@ -33,7 +33,7 @@ console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
   counter2. Calls on a variable outside of the function.
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
-  I don't know yet.
+  counter 2 might be preferable if you need to .
 */
 
 // counter1 code
@@ -81,33 +81,26 @@ Use the finalScore function below to do the following:
   "Away": 5
 }
 */ 
-function finalScore(inningCB, inningsPlayed){
 
-  function baseballGame(inningCB){
-  return {
+function finalScore(inningCB, inningsPlayed){
+  let currentScore = {
+    Away: inningCB(),
     Home: inningCB(),
-    Away: inningCB()
-}
-}
-  const finalTally = [];
-  let currentScore = baseballGame(inningCB); 
+  };
+  
+  let homeScore = 0;
+  let awayScore = 0;
   
   for(let i = 0; i < inningsPlayed; i++){
-    let homeScore = 0;
-    let awayScore = 0;
-   
-    
     homeScore = homeScore + currentScore.Home;
     awayScore = awayScore + currentScore.Away;
-    
-    finalTally.push(`INNINGS PLAYED: ${i=inningsPlayed}, FINAL SCORE - Away: ${awayScore} - Home: ${homeScore}`);
-
   }
-  return finalTally;
+  return currentScore;
 }
 
 
-console.log(finalScore(inning,3));
+console.log(finalScore(inning,9));
+
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
 Use the getInningScore() function below to do the following:
