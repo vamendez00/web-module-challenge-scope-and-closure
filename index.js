@@ -28,7 +28,7 @@ console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
   Study the code for counter1 and counter2, then answer the questions below.
   
   1. What is the difference between counter1 and counter2?
-  
+  Ex
   2. Which of the two uses a closure? How can you tell?
   
   3. In what scenario would the counter1 code be preferable? In what scenario would 
@@ -63,7 +63,7 @@ NOTE: This will be a callback function for the tasks below
 */
 
 function inning(){
-  return Math.floor(Math.random()*Math.floor(3));
+  return Math.floor(Math.random()*3);
 }
 
 
@@ -82,20 +82,38 @@ Use the finalScore function below to do the following:
 */ 
 
 function finalScore(inningCB, inningsPlayed){
-  let currentScore = {
-    Away: inningCB(),
-    Home: inningCB(),
-  };
-  
+
   let homeScore = 0;
   let awayScore = 0;
   
   for(let i = 0; i < inningsPlayed; i++){
-    homeScore = homeScore + currentScore.Home;
-    awayScore = awayScore + currentScore.Away;
+    homeScore = homeScore + inningCB();
+    console.log(homeScore);
+    awayScore = awayScore + inningCB();
+    console.log(awayScore);
   }
-  return currentScore;
+  return {
+    Home: homeScore,
+    Away: awayScore
+  }
 }
+console.log(finalScore(inning, 9) );
+
+// function finalScore(inningCB, inningsPlayed){
+//   let currentScore = {
+//     Away: inningCB(),
+//     Home: inningCB(),
+//   };
+  
+//   let homeScore = 0;
+//   let awayScore = 0;
+  
+//   for(let i = 0; i < inningsPlayed; i++){
+//     homeScore = homeScore + currentScore.Home;
+//     awayScore = awayScore + currentScore.Away;
+//   }
+//   return currentScore;
+// }
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
 Use the getInningScore() function below to do the following:
@@ -106,7 +124,7 @@ function getInningScore(inningCB) {
   return {
     Home: inningCB(),
     Away: inningCB()
-}
+  }
 }
 
 
@@ -116,7 +134,7 @@ Use the scoreboard function below to do the following:
   2. Receive the callback function `inning` from Task 2
   3. Receive a number of innings to be played
   4. Return an array where each of it's index values equals a string stating the
-  Home and Away team's scores for each inning.  Not the cummulative score.
+  Home and Away team's scores for each inning.  Not the cumulative score.
   5. If there's a tie at the end of the innings, add this message containing the score to the end of the array:  "This game will require extra innings: Away 12 - Home 12"  (see tie example below)
      If there isn't a tie, add this message to the end of the array: "Final Score: Away 13 - Home 11"  (see no tie example below)
   
@@ -151,8 +169,26 @@ Use the scoreboard function below to do the following:
 ]  
   */
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function scoreboard(inningCB, inningsPlayed) {
+  
+  let homeScore = 0;
+  let awayScore = 0;
+  
+  for(let i = 0; i < inningsPlayed; i++){
+    let newRunsHome = inningCB();
+      console.log(`Inning: ${i+1}, New Runs: ${newRunsHome}`);
+    homeScore = homeScore + newRunsHome;
+      console.log(`Current Score HOME: ${homeScore}`);
+    let newRunsAway = inningCB();
+      console.log(`Inning: ${i+1}, New Runs: ${newRunsAway}`);
+    awayScore = awayScore + inningCB();
+      console.log(`Current Score AWAY: ${awayScore}`);
+    
+    }
+    return {
+      Home: homeScore,
+      Away: awayScore
+    }
 }
 
 
